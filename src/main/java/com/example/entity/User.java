@@ -17,7 +17,7 @@ public class User {
     private String email;
     private String bio;
     private String password;
-    private String password2;
+
 
     private Set<ERole> role = new HashSet<>();
     private List<Post> posts = new ArrayList<>();
