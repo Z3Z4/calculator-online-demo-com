@@ -30,10 +30,13 @@ public class User implements UserDetails {
     @Column(length = 3000)
     private String password;
 
-    @ElementCollection(targetClass = ERole.class) //@ElementCollection предназначен для отображения не-сущностей (встраиваемых или базовых), а @OneToMany используется для сопоставления объектов.
-    @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))  //Аннотация @CollectionTable используется для указания имени таблицы, в которой хранятся все записи коллекции
+    @ElementCollection(targetClass = ERole.class)
+    //@ElementCollection предназначен для отображения не-сущностей (встраиваемых или базовых), а @OneToMany используется для сопоставления объектов.
+    @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
+    //Аннотация @CollectionTable используется для указания имени таблицы, в которой хранятся все записи коллекции
     private Set<ERole> role = new HashSet<>();
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user", orphanRemoval = true)  //Аннотация для прогрузки одного поста
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user", orphanRemoval = true)
+    //Аннотация для прогрузки одного поста
     private List<Post> posts = new ArrayList<>();
     @JsonFormat(pattern = "yyyy-mm-dd HH:mm:ss")        //формат даты и времени для создания постов на сайте
     @Column(updatable = false)
@@ -44,7 +47,7 @@ public class User implements UserDetails {
     Свойства класса, помеченные модификатором transient, не сериализуются. */
     private Collection<? extends GrantedAuthority> authorities;
 
-    public User(){
+    public User() {
     }
 
     public User(Long id,
@@ -60,22 +63,22 @@ public class User implements UserDetails {
     }
 
     @PrePersist
-    protected void onCreate(){
+    protected void onCreate() {
         this.createData = LocalDateTime.now();
     }
 
     /*
-    *SECURITY
+     *SECURITY
      */
 
-   /*
-    @Override
+    /*
+     @Override
 
-    protected Object clone() throws CloneNotSupportedException {
-        return super.clone();  ЭТОТ ЕБЛАН НЕ НАЖАЛ ОК ПОЭТОМУ ТУТ КОММЕНТАРИЙ
-    }*/
+     protected Object clone() throws CloneNotSupportedException {
+         return super.clone();  ЭТОТ ЕБЛАН НЕ НАЖАЛ ОК ПОЭТОМУ ТУТ КОММЕНТАРИЙ
+     }*/
     @Override
-    public String getPassword(){
+    public String getPassword() {
         return password;
     }
 
@@ -98,4 +101,5 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
 }
