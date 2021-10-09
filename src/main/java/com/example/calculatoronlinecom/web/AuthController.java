@@ -37,7 +37,7 @@ public class AuthController {
     private UserService userService;
 
 
-    @PostMapping"/siggnin"
+    @PostMapping("/signin")
     public ResponseEntity<Object> authenticateUser(@Valid @RequestBody LoginRequest loginRequest, BindingResult bindingResult){
         ResponseEntity<Object> errors = responseErrorValidation.mapValidationService(bindingResult);
         if (!ObjectUtils.isEmpty(errors)) return errors;
@@ -51,7 +51,7 @@ public class AuthController {
         return ResponseEntity.ok(new JWTTokenSuccessResponse(true, jwt));
     }
 
-    @PostMapping"/signup"
+    @PostMapping("/signup")
     public ResponseEntity<Object> registerUser(@Valid @RequestBody SignupRequest signupRequest, BindingResult bindingResult){
         ResponseEntity<Object> errors = responseErrorValidation.mapValidationService(bindingResult);
         if (!ObjectUtils.isEmpty(errors)) return errors;
