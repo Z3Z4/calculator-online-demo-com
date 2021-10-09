@@ -6,6 +6,5 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class MessageResponse {
-    public MessageResponse(String user_registrated_successfully) {
-    }
+    private String message;
 }

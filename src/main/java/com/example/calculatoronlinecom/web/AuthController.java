@@ -56,7 +56,9 @@ public class AuthController {
         if (!ObjectUtils.isEmpty(errors)) return errors;
 
         userService.createUser(signupRequest);
-        return ResponseEntity.ok(new MessageResponse("User registrated successfully"));
+        return ResponseEntity.ok(new MessageResponse("User registered successfully"));
     }
+
+
 
 }
