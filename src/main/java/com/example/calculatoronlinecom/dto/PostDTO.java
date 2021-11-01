@@ -2,6 +2,8 @@ package com.example.calculatoronlinecom.dto;
 
 import lombok.Data;
 
+import java.util.Set;
+
 @Data
 public class PostDTO {
     private Long id;
@@ -10,5 +12,6 @@ public class PostDTO {
     private String location;
     private String username;
     private Integer likes;
+    private Set<String> usersLiked;
 
 }
